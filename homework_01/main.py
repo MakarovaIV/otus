@@ -4,13 +4,15 @@
 """
 
 
-def power_numbers():
-    """
-    функция, которая принимает N целых чисел,
-    и возвращает список квадратов этих чисел
-    >>> power_numbers(1, 2, 5, 7)
-    <<< [1, 4, 25, 49]
-    """
+def power_numbers(*numbers):
+    square_of_num = []
+    for num in numbers:
+        num = num ** 2
+        square_of_num.append(num)
+    return square_of_num
+
+
+print(power_numbers(1, 2, 5, 7))
 
 
 # filter types
@@ -19,14 +21,45 @@ EVEN = "even"
 PRIME = "prime"
 
 
-def filter_numbers():
-    """
-    функция, которая на вход принимает список из целых чисел,
-    и возвращает только чётные/нечётные/простые числа
-    (выбор производится передачей дополнительного аргумента)
+def is_prime(num):
+    if num > 1:
+        for i in range(2, int(num / 2) + 1):
+            if (num % i) == 0:
+                return False
+        else:
+            return True
+    else:
+        return False
 
-    >>> filter_numbers([1, 2, 3], ODD)
-    <<< [1, 3]
-    >>> filter_numbers([2, 3, 4, 5], EVEN)
-    <<< [2, 4]
-    """
+
+def is_odd(num):
+    if num % 2:
+        return True
+    else:
+        return False
+
+
+def is_even(num):
+    if num % 2 == 0:
+        return True
+    else:
+        return False
+
+
+def filter_numbers(numbers, filter_type):
+    if filter_type == ODD:
+        ff = is_odd
+    elif filter_type == EVEN:
+        ff = is_even
+    elif filter_type == PRIME:
+        ff = is_prime
+    else:
+        print('It\'s unknown filter type')
+        return
+
+    return list(filter(ff, numbers))
+
+
+print('even numbers  =', filter_numbers(range(0, 50), EVEN))
+print('odd numbers   =', filter_numbers(range(0, 50), ODD))
+print('prime numbers =', filter_numbers(range(0, 50), PRIME))
