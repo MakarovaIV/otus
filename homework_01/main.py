@@ -12,8 +12,7 @@ def power_numbers(*numbers):
     return square_of_num
 
 
-print(power_numbers(1, 2, 5, 7))
-
+print('power_numbers =', power_numbers(1, 2, 5, 7))
 
 # filter types
 ODD = "odd"
@@ -33,31 +32,19 @@ def is_prime(num):
 
 
 def is_odd(num):
-    if num % 2:
-        return True
-    else:
-        return False
+    return num % 2
 
 
 def is_even(num):
-    if num % 2 == 0:
-        return True
-    else:
-        return False
+    return num % 2 == 0
 
 
 def filter_numbers(numbers, filter_type):
-    if filter_type == ODD:
-        ff = is_odd
-    elif filter_type == EVEN:
-        ff = is_even
-    elif filter_type == PRIME:
-        ff = is_prime
-    else:
-        print('It\'s unknown filter type')
-        return
-
-    return list(filter(ff, numbers))
+    dict_filter = {ODD: is_odd,
+                   EVEN: is_even,
+                   PRIME: is_prime,
+                   }
+    return list(filter(dict_filter[filter_type], numbers))
 
 
 print('even numbers  =', filter_numbers(range(0, 50), EVEN))
