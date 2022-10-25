@@ -1,3 +1,8 @@
+# How to build and run containder:
+# $ cd homework_03
+# $ docker build ./ -t homework03:1
+# $ docker run -it -p 8000:8000 homework03:1
+
 FROM python:3.10.8-bullseye
 
 ENV PYTHONUNBUFFERED=1
