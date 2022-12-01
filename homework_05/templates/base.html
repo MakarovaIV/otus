@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        {% block title %}
+          Flask project
+        {% endblock %}
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    {% block head %}
+
+    {% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-light p-3 mb-2" style="background-color: #e3f2fd;">
+      <div class="container-fluid">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              {% for endpoint, label in [
+              ('index_app.index_page', 'Home'),
+              ('about_app.about_page', 'About'),
+              ] %}
+              {% set path = url_for(endpoint) %}
+              <li class="nav-item">
+                  <a class="nav-link {{ 'active' if path == request.path else '' }} fs-4"
+                     href="{{ path }}">
+                      {{ label }}
+                  </a>
+              </li>
+              {% endfor %}
+          </ul>
+      </div>
+    </nav>
+    <div>
+        {% block body %}
+          Flask project
+        {% endblock %}
+    </div>
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>
