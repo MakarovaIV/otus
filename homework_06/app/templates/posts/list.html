@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Posts list
+{% endblock %}
+
+{% block body %}
+  <div class="h1 mb-2">Posts:</div>
+  {% if posts %}
+    <ul class="list-group">
+      {% for post in posts %}
+        <li class="post-list-item list-group-item">
+          <span class="green-text">Post</span>
+          <a class="post-item-link text-decoration-none"
+             href="{{ url_for('posts_app.details', post_id=post.id) }}"
+          >{{ post.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <h2>No posts yet</h2>
+  {% endif %}
+
+{% endblock %}
