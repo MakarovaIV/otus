@@ -1,12 +1,6 @@
 name: Test Homework_10
 
-on:
-  push:
-    branches:
-      - "homework10"
-      - "main"
-  pull_request:
-    branches: [ "main" ]
+on: [push]
 
 jobs:
   build:
@@ -23,6 +17,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install pytest
         pip install -r requirements.txt
-    - name: Test with pytest
+    - name: Prepare to tests
+      run:
+        cd homework_10/
+    - name: Run Tests
       run: |
         python manage.py test
