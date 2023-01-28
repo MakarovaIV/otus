@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% from 'posts/macros/postform.html' import postform %}
+
+{% set createpath = url_for('posts_app.add') %}
+{% set iscreate = request.path == createpath %}
+{% if iscreate %}
+  {% set buttontext = 'Create' %}
+{% else %}
+  {% set buttontext = 'Update' %}
+{% endif %}
+
+{% block title %}
+  {% if iscreate %}
+    Add
+  {% else %}
+    Update {{ post.id }}
+  {% endif %}
+  post
+{% endblock %}
+
+{% block body %}
+  <div>
+    <div class="h3">{% if iscreate %}
+      Create a new post
+    {% else %}
+      Update post <code>{{ post.title }}</code>
+    {% endif %}
+    </div>
+    {{ postform(form, buttontext) }}
+  </div>
+
+{% endblock %}
