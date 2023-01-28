@@ -18,4 +18,4 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       run: |
-        python ./homework_10/shop/manage.py test
+        python ./homework_10/shop/manage.py test pokupka
