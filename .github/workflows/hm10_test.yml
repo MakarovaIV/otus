@@ -17,9 +17,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install pytest
         pip install -r requirements.txt
-    - name: Prepare to tests
-      run:
-        cd homework_10/
     - name: Run Tests
       run: |
+        cd src
         python manage.py test
